@@ -1,0 +1,14 @@
+{
+  "topic": "Flight Price Watch chapters — what's inside the app (RU)",
+  "language": "russian",
+  "lines": [
+    { "index": 0, "section": "hook", "text": "Одно приложение — все самые дешёвые перелёты из Вильнюса и Варшавы. Вот что у него внутри.", "visualPrompt": "hand holding smartphone with travel app, airport window with airplane in background, cinematic" },
+    { "index": 1, "section": "scene", "text": "Выходные в Европе: улетаешь в пятницу вечером, возвращаешься в воскресенье. Приложение само подбирает самые дешёвые города.", "visualPrompt": "couple walking in european old town evening, warm street lights, weekend city break" },
+    { "index": 2, "section": "scene", "text": "Формула один: перелёты на все летние гонки — цены уже сравнены.", "visualPrompt": "formula one race car speeding on track, crowd grandstand, motion blur" },
+    { "index": 3, "section": "scene", "text": "Любишь концерты? Tomorrowland, Sziget и стадионные туры — перелёт и дата события на одной странице.", "visualPrompt": "huge concert crowd at night festival, stage lights, hands in the air" },
+    { "index": 4, "section": "scene", "text": "Для походов — Альпы: Доломиты, Австрия, Швейцария. С июня по сентябрь.", "visualPrompt": "hiker on alpine mountain trail, dolomites peaks, sunny summer day, epic landscape" },
+    { "index": 5, "section": "scene", "text": "А на зиму — Тенерифе. Когда в Вильнюсе льёт, там двадцать пять градусов.", "visualPrompt": "tenerife ocean beach with volcano in background, sunny winter sun, palm trees" },
+    { "index": 6, "section": "solution", "text": "Цены проверяются автоматически круглые сутки, а график показывает, когда покупать дешевле всего.", "visualPrompt": "real Flight Price Watch tracker page screen recording", "sourceClip": "tracker-app.mp4", "clipStartSec": 2.5 },
+    { "index": 7, "section": "cta", "text": "Всё это работает бесплатно. Ссылку найдёшь в описании.", "visualPrompt": "happy traveler with backpack walking to airport gate, golden hour light" }
+  ]
+}
