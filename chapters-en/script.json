@@ -1,0 +1,56 @@
+{
+  "topic": "Flight Price Watch chapters — what's inside the app (EN)",
+  "language": "english",
+  "lines": [
+    {
+      "index": 0,
+      "section": "hook",
+      "text": "One app — all the cheapest flights from Vilnius and Warsaw. Here's what's inside.",
+      "visualPrompt": "hand holding smartphone with travel app, airport window with airplane in background, cinematic"
+    },
+    {
+      "index": 1,
+      "section": "scene",
+      "text": "Weekend in Europe: fly out Friday evening, come back Sunday night. The app picks the cheapest cities for you.",
+      "visualPrompt": "couple walking in european old town evening, warm street lights, weekend city break"
+    },
+    {
+      "index": 2,
+      "section": "scene",
+      "text": "Formula One: flights to every summer race weekend — prices already compared.",
+      "visualPrompt": "formula one race car speeding on track, crowd grandstand, motion blur"
+    },
+    {
+      "index": 3,
+      "section": "scene",
+      "text": "Love concerts? Tomorrowland, Sziget and stadium tours — flight and event date on one page.",
+      "visualPrompt": "huge concert crowd at night festival, stage lights, hands in the air"
+    },
+    {
+      "index": 4,
+      "section": "scene",
+      "text": "For hiking — the Alps: Dolomites, Austria, Switzerland. June through September.",
+      "visualPrompt": "hiker on alpine mountain trail, dolomites peaks, sunny summer day, epic landscape"
+    },
+    {
+      "index": 5,
+      "section": "scene",
+      "text": "And for winter — Tenerife. When it's pouring in Vilnius, it's twenty five degrees there.",
+      "visualPrompt": "tenerife ocean beach with volcano in background, sunny winter sun, palm trees"
+    },
+    {
+      "index": 6,
+      "section": "solution",
+      "text": "Prices are checked automatically around the clock, and the chart shows when it's cheapest to buy.",
+      "visualPrompt": "real Flight Price Watch tracker page screen recording",
+      "sourceClip": "tracker-app.mp4",
+      "clipStartSec": 2.5
+    },
+    {
+      "index": 7,
+      "section": "cta",
+      "text": "It's completely free. The link is in the description.",
+      "visualPrompt": "happy traveler with backpack walking to airport gate, golden hour light"
+    }
+  ]
+}
