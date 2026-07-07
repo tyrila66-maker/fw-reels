@@ -2,26 +2,27 @@
 """
 Runs in GitHub Actions every 15 minutes: finds reels approved via the Telegram
 buttons (decisions live in Supabase, written by the flight-watch webhook) and
-publishes them to Instagram through the official Graph API.
+publishes them to Instagram through Buffer's GraphQL API.
 
-Required repo secrets: SUPABASE_URL, SUPABASE_KEY, TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID.
-Publishing additionally needs IG_ACCESS_TOKEN + IG_USER_ID (Meta app token with
-instagram_content_publish); until they are set the script reports and exits 0.
+Each reel folder has meta.json with a post_date — a reel is only published on or
+after that date, so approving early is safe (RU can wait while EN goes today).
 
-Publish strategy: resumable upload (rupload.facebook.com) from the repo checkout,
-so the repo can stay private. Falls back to raw.githubusercontent.com video_url
-(requires the repo to be public) if the resumable path fails.
+Required repo secrets: SUPABASE_URL, SUPABASE_KEY, TELEGRAM_BOT_TOKEN,
+TELEGRAM_CHAT_ID, BUFFER_ACCESS_TOKEN. Optional: BUFFER_CHANNEL_ID (otherwise the
+first connected Instagram channel is used). Video is fetched by Buffer from the
+public raw.githubusercontent.com URL, so this repo must stay public.
 """
 import glob
 import json
 import os
 import sys
-import time
+from datetime import date
 
 import httpx
 
-GRAPH = "https://graph.facebook.com/v21.0"
+BUFFER_API = "https://api.buffer.com/graphql"
 PREFIX = "reel-approval-"
+REPO = os.environ.get("GITHUB_REPOSITORY", "tyrila66-maker/fw-reels")
 
 
 def sb_headers():
@@ -63,106 +64,109 @@ def notify(client: httpx.Client, text: str):
                     json={"chat_id": chat, "text": text, "parse_mode": "HTML"})
 
 
-def wait_container(client: httpx.Client, container_id: str, token: str, minutes: int = 10):
-    deadline = time.time() + minutes * 60
-    while time.time() < deadline:
-        r = client.get(f"{GRAPH}/{container_id}",
-                       params={"fields": "status_code", "access_token": token})
-        status = r.json().get("status_code", "")
-        print(f"  container status: {status}")
-        if status == "FINISHED":
-            return
-        if status == "ERROR":
-            raise RuntimeError(f"container error: {r.json()}")
-        time.sleep(15)
-    raise RuntimeError("container processing timeout")
+def buffer_headers():
+    return {"Authorization": f"Bearer {os.environ['BUFFER_ACCESS_TOKEN']}",
+            "Content-Type": "application/json"}
 
 
-def publish_resumable(client: httpx.Client, ig_user: str, token: str,
-                      video_path: str, caption: str) -> str:
-    r = client.post(f"{GRAPH}/{ig_user}/media", data={
-        "media_type": "REELS", "upload_type": "resumable",
-        "caption": caption, "share_to_feed": "true", "access_token": token,
-    })
+def resolve_channel_id(client: httpx.Client) -> str:
+    """Env override, else the first connected Instagram channel."""
+    forced = os.environ.get("BUFFER_CHANNEL_ID", "").strip()
+    if forced:
+        return forced
+    r = client.post(BUFFER_API, headers=buffer_headers(),
+                    json={"query": "{ account { organizations { id } } }"})
+    orgs = r.json().get("data", {}).get("account", {}).get("organizations", [])
+    if not orgs:
+        raise RuntimeError("Buffer: no organizations for this token")
+    oid = orgs[0]["id"]
+    q = '{ channels(input:{organizationId:"%s"}){ id service } }' % oid
+    r = client.post(BUFFER_API, headers=buffer_headers(), json={"query": q})
+    for c in r.json().get("data", {}).get("channels", []) or []:
+        if c.get("service") == "instagram":
+            return c["id"]
+    raise RuntimeError("Buffer: no Instagram channel connected")
+
+
+CREATE_POST = """mutation($input: CreatePostInput!){
+  createPost(input: $input){ __typename
+    ... on PostActionSuccess { post { id status } }
+    ... on InvalidInputError { message }
+    ... on UnexpectedError { message }
+    ... on LimitReachedError { message }
+    ... on UnauthorizedError { message }
+    ... on NotFoundError { message }
+    ... on RestProxyError { message } } }"""
+
+
+def publish_reel(client: httpx.Client, channel_id: str, video_url: str, caption: str) -> str:
+    variables = {"input": {
+        "channelId": channel_id,
+        "schedulingType": "automatic",
+        "mode": "shareNow",
+        "text": caption,
+        "assets": [{"video": {"url": video_url}}],
+        "metadata": {"instagram": {"type": "reel", "shouldShareToFeed": True}},
+    }}
+    r = client.post(BUFFER_API, headers=buffer_headers(),
+                    json={"query": CREATE_POST, "variables": variables}, timeout=120)
     body = r.json()
-    if "id" not in body or "uri" not in body:
-        raise RuntimeError(f"resumable container failed: {body.get('error', body)}")
-    container_id, upload_uri = body["id"], body["uri"]
-
-    size = os.path.getsize(video_path)
-    with open(video_path, "rb") as f:
-        r = client.post(upload_uri, content=f.read(), headers={
-            "Authorization": f"OAuth {token}",
-            "offset": "0", "file_size": str(size),
-        }, timeout=600)
-    if not r.json().get("success", False):
-        raise RuntimeError(f"binary upload failed: {r.text[:300]}")
-
-    wait_container(client, container_id, token)
-    r = client.post(f"{GRAPH}/{ig_user}/media_publish",
-                    data={"creation_id": container_id, "access_token": token})
-    body = r.json()
-    if "id" not in body:
-        raise RuntimeError(f"media_publish failed: {body.get('error', body)}")
-    return body["id"]
-
-
-def publish_by_url(client: httpx.Client, ig_user: str, token: str,
-                   video_url: str, caption: str) -> str:
-    r = client.post(f"{GRAPH}/{ig_user}/media", data={
-        "media_type": "REELS", "video_url": video_url,
-        "caption": caption, "share_to_feed": "true", "access_token": token,
-    })
-    body = r.json()
-    if "id" not in body:
-        raise RuntimeError(f"url container failed: {body.get('error', body)}")
-    wait_container(client, body["id"], token)
-    r = client.post(f"{GRAPH}/{ig_user}/media_publish",
-                    data={"creation_id": body["id"], "access_token": token})
-    out = r.json()
-    if "id" not in out:
-        raise RuntimeError(f"media_publish failed: {out.get('error', out)}")
-    return out["id"]
+    if "errors" in body:
+        raise RuntimeError(f"Buffer GraphQL: {body['errors'][:1]}")
+    result = body["data"]["createPost"]
+    if result["__typename"] != "PostActionSuccess":
+        raise RuntimeError(f"Buffer: {result['__typename']} — {result.get('message')}")
+    return result["post"]["id"]
 
 
 def main():
     with httpx.Client(timeout=60) as client:
         decisions = latest_decisions(client)
         approved = [rid for rid, note in decisions.items() if note == "approved"]
-        print(f"decisions: {decisions} | to publish: {approved}")
+        print(f"decisions: {decisions} | approved: {approved}")
         if not approved:
             return
 
-        token = os.environ.get("IG_ACCESS_TOKEN", "").strip()
-        ig_user = os.environ.get("IG_USER_ID", "").strip()
+        token = os.environ.get("BUFFER_ACCESS_TOKEN", "").strip()
+        if not token:
+            print("BUFFER_ACCESS_TOKEN not set — waiting")
+            return
+
+        channel_id = None
+        today = date.today().isoformat()
 
         for reel_id in approved:
             videos = glob.glob(f"{reel_id}/*-post.mp4")
             caption_path = os.path.join(reel_id, "caption.txt")
+            meta_path = os.path.join(reel_id, "meta.json")
             if not videos or not os.path.exists(caption_path):
-                print(f"skip {reel_id}: files not found in repo")
+                print(f"skip {reel_id}: files not found")
                 continue
-            if not token or not ig_user:
-                print(f"{reel_id} approved, but IG_ACCESS_TOKEN/IG_USER_ID secrets are not set — waiting")
+
+            post_date = "1970-01-01"
+            if os.path.exists(meta_path):
+                post_date = json.load(open(meta_path, encoding="utf-8")).get("post_date", post_date)
+            if today < post_date:
+                print(f"hold {reel_id}: post_date {post_date} is in the future")
                 continue
+
             caption = open(caption_path, encoding="utf-8").read().strip()
-            video = videos[0]
-            print(f"publishing {reel_id} from {video}")
+            video = videos[0].replace(os.sep, "/")
+            video_url = f"https://raw.githubusercontent.com/{REPO}/main/{video}"
+
+            if channel_id is None:
+                channel_id = resolve_channel_id(client)
+
+            print(f"publishing {reel_id} -> {video_url}")
             try:
-                try:
-                    media_id = publish_resumable(client, ig_user, token, video, caption)
-                except Exception as e:
-                    print(f"resumable failed ({e}); trying raw URL fallback")
-                    repo = os.environ.get("GITHUB_REPOSITORY", "tyrila66-maker/fw-reels")
-                    raw = f"https://raw.githubusercontent.com/{repo}/main/{video.replace(os.sep, '/')}"
-                    media_id = publish_by_url(client, ig_user, token, raw, caption)
+                post_id = publish_reel(client, channel_id, video_url, caption)
             except Exception as e:
                 notify(client, f"⚠️ Автопубликация <b>{reel_id}</b> не удалась: {str(e)[:200]}")
                 print(f"FAILED {reel_id}: {e}", file=sys.stderr)
                 continue
             mark_published(client, reel_id)
-            notify(client, f"🎉 <b>{reel_id}</b> опубликован в Instagram автоматически (media {media_id})")
-            print(f"PUBLISHED {reel_id}: media {media_id}")
+            notify(client, f"🎉 <b>{reel_id}</b> отправлен в Instagram через Buffer (post {post_id})")
+            print(f"PUBLISHED {reel_id}: {post_id}")
 
 
 if __name__ == "__main__":
