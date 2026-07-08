@@ -1,0 +1,56 @@
+{
+  "topic": "Real price drop — flight to Georgia caught at 90 EUR (LT)",
+  "language": "lithuanian",
+  "lines": [
+    {
+      "index": 0,
+      "section": "hook",
+      "text": "Šimtas dvylika eurų. Paskui šimtas septyniolika. O paskui staiga — devyniasdešimt.",
+      "visualPrompt": "smartphone screen with rising flight price numbers, airport window, dramatic"
+    },
+    {
+      "index": 1,
+      "section": "problem",
+      "text": "Kelias dienas stebėjau skrydžio į Gruziją kainą, ir ji vis kilo.",
+      "visualPrompt": "person looking at phone worried, airport departure board, warm light"
+    },
+    {
+      "index": 2,
+      "section": "scene",
+      "text": "Bilietas brango tiesiog akyse — nuo šimto dvylikos iki šimto septyniolikos eurų.",
+      "visualPrompt": "red upward price chart arrow going up, financial graph rising"
+    },
+    {
+      "index": 3,
+      "section": "solution",
+      "text": "Bet aš neskubėjau. Flight Price Watch tikrina kainas visą parą ir parodo, kada jos krenta.",
+      "visualPrompt": "real Flight Price Watch tracker page screen recording",
+      "sourceClip": "tracker-georgia.mp4",
+      "clipStartSec": 2.0
+    },
+    {
+      "index": 4,
+      "section": "scene",
+      "text": "Ir tada kaina nukrito. Nupirkau bilietą į Gruziją už devyniasdešimt eurų.",
+      "visualPrompt": "happy person holding phone with plane ticket, relief and joy"
+    },
+    {
+      "index": 5,
+      "section": "scene",
+      "text": "O ten jau laukia Kaukazo kalnai ir senasis Tbilisis.",
+      "visualPrompt": "Caucasus mountains Georgia dramatic green landscape, epic peaks"
+    },
+    {
+      "index": 6,
+      "section": "scene",
+      "text": "Kutaisis, vynuogynai ir kalnų keliai — visai ne už kalnų.",
+      "visualPrompt": "Tbilisi Georgia old town aerial view, colorful houses and river"
+    },
+    {
+      "index": 7,
+      "section": "cta",
+      "text": "Nori pagauti pigiausią kainą, kaip aš? Nuoroda aprašyme.",
+      "visualPrompt": "traveler with backpack walking to airport gate at golden hour"
+    }
+  ]
+}
