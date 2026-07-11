@@ -1,0 +1,56 @@
+{
+  "topic": "Weekend by what you want to eat — Europe cities with live prices (LT)",
+  "language": "lithuanian",
+  "lines": [
+    {
+      "index": 0,
+      "section": "hook",
+      "text": "Šį savaitgalį — pica su vynu Italijoje. O gal paelija Ispanijoje?",
+      "visualPrompt": "delicious italian pizza and glass of red wine on rustic table, appetizing closeup"
+    },
+    {
+      "index": 1,
+      "section": "scene",
+      "text": "Skrydis į Italiją, ir laukia tikra pica, makaronai ir vynas prie jūros.",
+      "visualPrompt": "rome colosseum sunny day with italian pasta and wine, travel food"
+    },
+    {
+      "index": 2,
+      "section": "scene",
+      "text": "Paelija skaniausia tik Ispanijoje — Barselona, Alikantė ar Maljorka.",
+      "visualPrompt": "spanish seafood paella closeup, barcelona sunny street"
+    },
+    {
+      "index": 3,
+      "section": "scene",
+      "text": "O gal giros ir saulė Atėnuose, prie pat Akropolio?",
+      "visualPrompt": "greek gyros food and acropolis athens blue sky sunny"
+    },
+    {
+      "index": 4,
+      "section": "scene",
+      "text": "Ar kava su obuolių štrudeliu jaukioje Vienoje?",
+      "visualPrompt": "vienna cozy coffee house apple strudel and coffee, warm light"
+    },
+    {
+      "index": 5,
+      "section": "solution",
+      "text": "Visos kainos gyvos, realiu laiku. Flight Price Watch tikrina jas visą parą.",
+      "visualPrompt": "real Flight Price Watch europe weekend page screen recording",
+      "sourceClip": "tracker-weekend.mp4",
+      "clipStartSec": 2.0
+    },
+    {
+      "index": 6,
+      "section": "scene",
+      "text": "Išsirink miestą pagal tai, ką nori valgyti šį savaitgalį — nuo šimto eurų.",
+      "visualPrompt": "happy friends eating at european outdoor cafe terrace, weekend vibe"
+    },
+    {
+      "index": 7,
+      "section": "cta",
+      "text": "Pigiausi savaitgalio skrydžiai — nuoroda aprašyme.",
+      "visualPrompt": "traveler with small bag walking european old town street at golden hour"
+    }
+  ]
+}
