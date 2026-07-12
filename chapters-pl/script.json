@@ -1,0 +1,56 @@
+{
+  "topic": "Flight Price Watch chapters — what's inside the app (PL)",
+  "language": "polish",
+  "lines": [
+    {
+      "index": 0,
+      "section": "hook",
+      "text": "Wszystkie najtańsze loty z Warszawy i Wilna — w jednej aplikacji. Zobacz, co w środku.",
+      "visualPrompt": "hand holding smartphone with travel app, airport window with airplane, cinematic"
+    },
+    {
+      "index": 1,
+      "section": "scene",
+      "text": "Weekend w Europie: wylatujesz w piątek wieczorem, wracasz w niedzielę. Aplikacja sama wybiera najtańsze miasta.",
+      "visualPrompt": "couple walking in european old town evening, warm street lights, weekend city break"
+    },
+    {
+      "index": 2,
+      "section": "scene",
+      "text": "Formuła 1: loty na wszystkie letnie wyścigi, ceny już porównane.",
+      "visualPrompt": "formula one race car speeding on track, crowd grandstand, motion blur"
+    },
+    {
+      "index": 3,
+      "section": "scene",
+      "text": "Lubisz koncerty? Tomorrowland, Sziget i trasy stadionowe — lot i data wydarzenia na jednej stronie.",
+      "visualPrompt": "huge concert crowd at night festival, stage lights, hands in the air"
+    },
+    {
+      "index": 4,
+      "section": "scene",
+      "text": "Na wędrówki — Alpy: Dolomity, Austria, Szwajcaria. Od czerwca do września.",
+      "visualPrompt": "hiker on alpine mountain trail, dolomites peaks, sunny summer day, epic landscape"
+    },
+    {
+      "index": 5,
+      "section": "scene",
+      "text": "A na zimę — Teneryfa. Gdy w Warszawie leje, tam jest dwadzieścia pięć stopni.",
+      "visualPrompt": "tenerife ocean beach with volcano in background, sunny winter sun, palm trees"
+    },
+    {
+      "index": 6,
+      "section": "solution",
+      "text": "Ceny sprawdzane automatycznie przez całą dobę, a wykres pokazuje, kiedy kupić najtaniej.",
+      "visualPrompt": "real Flight Price Watch tracker page screen recording",
+      "sourceClip": "tracker-app.mp4",
+      "clipStartSec": 2.5
+    },
+    {
+      "index": 7,
+      "section": "cta",
+      "text": "Wszystko działa za darmo. Link znajdziesz w opisie.",
+      "visualPrompt": "happy traveler with backpack walking to airport gate, golden hour light"
+    }
+  ]
+}

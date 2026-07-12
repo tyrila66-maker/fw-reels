@@ -1,0 +1,12 @@
+Tanie loty z Warszawy w jednej aplikacji ✈️
+
+Co znajdziesz we Flight Price Watch?
+🗓 Weekendy w Europie — piątek→niedziela, najtańsze miasta z żywymi cenami
+🏎 Formuła 1 — loty na letnie wyścigi, ceny już porównane
+🎤 Koncerty — Tomorrowland, Sziget, trasy stadionowe: lot i data na jednej stronie
+🏔 Alpy (czerwiec–wrzesień) i 🌴 Teneryfa na zimę
+
+Ceny sprawdzane przez całą dobę, a wykres pokazuje, kiedy kupić najtaniej. Za darmo, bez rejestracji: https://flight-watch.onrender.com
+
+Wyślij znajomemu, z którym chcesz gdzieś polecieć ✈️
+#tanieloty #loty #podróże #warszawa
