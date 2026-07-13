@@ -1,0 +1,56 @@
+{
+  "topic": "Bilietų pirkimo antradienį mitas — tikri duomenys jį sugriauna (LT)",
+  "language": "lithuanian",
+  "lines": [
+    {
+      "index": 0,
+      "section": "hook",
+      "text": "Antradienį pigiau? Patikrinom penkis šimtus kainų. Diena neturi jokios reikšmės.",
+      "visualPrompt": "calendar page with tuesday crossed out in red, flight ticket price tags, bold myth busted text overlay, dramatic reveal"
+    },
+    {
+      "index": 1,
+      "section": "problem",
+      "text": "Visi kartoja vieną patarimą: pirkite bilietą antradienį arba trečiadienį — tada skrydžiai pigiausiai. Bet iš kur atsirado šis mitas?",
+      "visualPrompt": "person scrolling travel tips article on phone, skeptical expression, couch at home"
+    },
+    {
+      "index": 2,
+      "section": "scene",
+      "text": "Šis patarimas atsirado prieš dešimtmetį. Tada aviakompanijos atnaujindavo kainas pirmadienio naktį, todėl antradienį kartais atsirasdavo pigesnių vietų. Dabar to nebėra.",
+      "visualPrompt": "old vintage airline poster, decade old calendar, retro flight booking website screenshot"
+    },
+    {
+      "index": 3,
+      "section": "solution",
+      "text": "Šiandien kainos keičiasi daugybę kartų per dieną — pagal paklausą, likusias vietas ir keleivių paieškas. Štai kaip atrodo tikra kainų istorija.",
+      "visualPrompt": "real Flight Price Watch tracker page screen recording",
+      "sourceClip": "tracker-app.mp4",
+      "clipStartSec": 2.5
+    },
+    {
+      "index": 4,
+      "section": "scene",
+      "text": "Vienam maršrutui kaina nukrito penktadienio vakarą. Kitam — sekmadienį ryte. Nė vienas kritimas — ne antradienis.",
+      "visualPrompt": "flight price chart showing random day drops, arrows pointing to friday and sunday dips, data visualization clean"
+    },
+    {
+      "index": 5,
+      "section": "scene",
+      "text": "Kas iš tiesų lemia pigesnę kainą: kiek dienų iš anksto perki bilietą, ar keliausi sezono piiku, ir kiek vietų liko lėktuve.",
+      "visualPrompt": "infographic showing booking advance days vs price, 90 days ahead vs last minute comparison"
+    },
+    {
+      "index": 6,
+      "section": "scene",
+      "text": "Geriausias būdas — nustatyti sekiklį ir laukti, kol kaina kris. Nesvarbu, kuri tai bus savaitės diena.",
+      "visualPrompt": "smartphone notification showing price drop alert, person smiling with relief, flight booking screen"
+    },
+    {
+      "index": 7,
+      "section": "cta",
+      "text": "Sek kainas nemokamai ir pirk, kai tikrai pigiausia — nesvarbu, ar tai pirmadienis, ar sekmadienis. Nuoroda aprašyme.",
+      "visualPrompt": "happy traveler with luggage at airport terminal, phone showing cheap ticket, golden hour light"
+    }
+  ]
+}
