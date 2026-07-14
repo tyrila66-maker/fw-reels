@@ -1,0 +1,56 @@
+{
+  "topic": "TikTok POV skit — the flight price mind games (EN)",
+  "language": "english",
+  "lines": [
+    {
+      "index": 0,
+      "section": "hook",
+      "text": "POV: you just found a flight for ninety euros.",
+      "visualPrompt": "excited young person looking at phone smiling, cozy room, relatable"
+    },
+    {
+      "index": 1,
+      "section": "scene",
+      "text": "So you go make a coffee. What could go wrong?",
+      "visualPrompt": "person casually making coffee in kitchen, relaxed morning"
+    },
+    {
+      "index": 2,
+      "section": "scene",
+      "text": "You come back. It's a hundred and seventeen.",
+      "visualPrompt": "shocked face looking at phone in disbelief, dramatic"
+    },
+    {
+      "index": 3,
+      "section": "scene",
+      "text": "Refresh. A hundred twelve. Refresh. Up again. The price is playing with you.",
+      "visualPrompt": "red stock chart shooting up, financial panic, numbers rising fast"
+    },
+    {
+      "index": 4,
+      "section": "problem",
+      "text": "Airlines change prices dozens of times a day. It's a game, and honestly, you're losing.",
+      "visualPrompt": "stressed person surrounded by chaotic screens, overwhelmed"
+    },
+    {
+      "index": 5,
+      "section": "solution",
+      "text": "So let the app play instead. Flight Price Watch tracks the price all day and catches the drop.",
+      "visualPrompt": "real Flight Price Watch tracker page screen recording",
+      "sourceClip": "tracker-georgia.mp4",
+      "clipStartSec": 2.0
+    },
+    {
+      "index": 6,
+      "section": "scene",
+      "text": "It drops. You buy at ninety. And while the price was busy... you were having coffee.",
+      "visualPrompt": "relaxed happy person sipping coffee smiling, victorious calm"
+    },
+    {
+      "index": 7,
+      "section": "cta",
+      "text": "Stop gambling with ticket prices. Link in bio.",
+      "visualPrompt": "traveler walking confidently through airport, golden hour"
+    }
+  ]
+}
