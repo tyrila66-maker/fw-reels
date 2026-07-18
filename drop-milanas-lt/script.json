@@ -1,0 +1,56 @@
+{
+  "topic": "Live price drop to Milanas (lithuanian)",
+  "language": "lithuanian",
+  "lines": [
+    {
+      "index": 0,
+      "section": "hook",
+      "text": "173 eurų. O dabar staiga tik 139. Pažiūrėk į tai.",
+      "visualPrompt": "dramatic falling price chart red arrow, numbers dropping fast"
+    },
+    {
+      "index": 1,
+      "section": "problem",
+      "text": "Skrydžio į Milanas kaina kelias dienas tik kilo ir kilo.",
+      "visualPrompt": "Milanas famous landmark cinematic, travel destination"
+    },
+    {
+      "index": 2,
+      "section": "scene",
+      "text": "Ji atrodė per brangi, ir daugelis tiesiog pasidavė bei nusuko akis.",
+      "visualPrompt": "person looking at phone disappointed at high price, airport"
+    },
+    {
+      "index": 3,
+      "section": "solution",
+      "text": "Bet Flight Price Watch tikrina kainas visą parą ir pagavo tinkamą momentą.",
+      "visualPrompt": "real Flight Price Watch tracker page screen recording",
+      "sourceClip": "tracker-live.mp4",
+      "clipStartSec": 2.0
+    },
+    {
+      "index": 4,
+      "section": "scene",
+      "text": "Kaina nukrito iki 139 eurų. Tai reali, gyva šios dienos kaina.",
+      "visualPrompt": "happy traveler celebrating on phone, relief and joy"
+    },
+    {
+      "index": 5,
+      "section": "scene",
+      "text": "Štai kiek sutaupai vien todėl, kad sekei kainą reikiamu metu.",
+      "visualPrompt": "Milanas beautiful streets and views, sunny travel vibe"
+    },
+    {
+      "index": 6,
+      "section": "scene",
+      "text": "Tokios kainos ilgai neišsilaiko, todėl svarbu pagauti tą akimirką.",
+      "visualPrompt": "airport departure board and planes, sense of urgency"
+    },
+    {
+      "index": 7,
+      "section": "cta",
+      "text": "Nori sutaupyti lygiai taip pat? Sek kainas nemokamai. Nuoroda aprašyme.",
+      "visualPrompt": "traveler with backpack walking to gate at golden hour"
+    }
+  ]
+}
