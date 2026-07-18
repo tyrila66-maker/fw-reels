@@ -9,6 +9,28 @@ on:
         description: "Force-produce this queue item id"
         required: false
         default: ""
+      drop_city:
+        description: "Live-drop: city name"
+        required: false
+        default: ""
+      drop_route:
+        description: "Live-drop: route_id to record"
+        required: false
+        default: ""
+      drop_from:
+        description: "Live-drop: old price"
+        required: false
+        default: ""
+      drop_to:
+        description: "Live-drop: new price"
+        required: false
+        default: ""
+      drop_lang:
+        description: "Live-drop: lt|pl|ru|en"
+        required: false
+        default: "lt"
+  repository_dispatch:
+    types: [produce_drop]
 
 permissions:
   contents: write
@@ -36,16 +58,21 @@ jobs:
         run: |
           pip install httpx playwright
           playwright install --with-deps chromium
-      - name: Produce next reel
+      - name: Produce
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
           ELEVENLABS_VOICE_ID: ${{ secrets.ELEVENLABS_VOICE_ID }}
           ELEVENLABS_MODEL_ID: ${{ secrets.ELEVENLABS_MODEL_ID }}
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           FORCE_REEL_ID: ${{ inputs.reel_id }}
+          DROP_CITY: ${{ inputs.drop_city }}${{ github.event.client_payload.city }}
+          DROP_ROUTE: ${{ inputs.drop_route }}${{ github.event.client_payload.route }}
+          DROP_FROM: ${{ inputs.drop_from }}${{ github.event.client_payload.from }}
+          DROP_TO: ${{ inputs.drop_to }}${{ github.event.client_payload.to }}
+          DROP_LANG: ${{ inputs.drop_lang }}${{ github.event.client_payload.lang }}
         run: python scripts/produce.py
