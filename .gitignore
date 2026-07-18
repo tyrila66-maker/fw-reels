@@ -1,0 +1,5 @@
+pipeline/node_modules/
+pipeline/tmp/
+pipeline/output/
+*.webm
+job-script.json
