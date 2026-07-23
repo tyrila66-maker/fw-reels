@@ -72,6 +72,21 @@ def top_drops(client, days=7, n=5):
     return drops
 
 
+def since_tracking_down(client, route_id):
+    """True, если текущая цена НИЖЕ первой отслеженной — трекер покажет падение
+    (зелёный 'since tracking down'), а не рост. Защита price-drop от диссонанса."""
+    base_url = os.environ["SUPABASE_URL"]
+    q = {"route_id": f"eq.{route_id}", "status": "eq.ok", "price": "not.is.null",
+         "select": "price", "limit": "1"}
+    first = client.get(f"{base_url}/rest/v1/price_checks", headers=sb_headers(),
+                       params={**q, "order": "checked_at.asc"}).json()
+    last = client.get(f"{base_url}/rest/v1/price_checks", headers=sb_headers(),
+                      params={**q, "order": "checked_at.desc"}).json()
+    if first and last and first[0]["price"] and last[0]["price"]:
+        return last[0]["price"] < first[0]["price"]
+    return True
+
+
 def route_meta(client, route_id):
     """(title, dest_city) со страницы трекера."""
     try:
@@ -202,6 +217,9 @@ def main():
                 d = drops[0]; route, frm, to = d["route_id"], str(d["from"]), str(d["to"])
             if not (frm and to):
                 tg_text(client, f"⚠️ Дроп {drop_city}: не нашёл цифры (было/стало). Пришли так: дроп {drop_city} 200 140 {lang}")
+                return
+            if route and not since_tracking_down(client, route):
+                tg_text(client, f"⚠️ Дроп {drop_city}: маршрут {route} сейчас в РОСТЕ — трекер покажет «UP», а не падение (будет диссонанс с сюжетом). Выбери маршрут, где цена ниже старта отслеживания, или пришли без route.")
                 return
             src = "tracker-app.mp4"
             if route:
