@@ -1,0 +1,56 @@
+{
+  "topic": "Live price drop to Wiedeń (polish)",
+  "language": "polish",
+  "lines": [
+    {
+      "index": 0,
+      "section": "hook",
+      "text": "125 euro. A teraz nagle tylko 74. Zobacz to.",
+      "visualPrompt": "dramatic falling price chart red arrow, numbers dropping fast"
+    },
+    {
+      "index": 1,
+      "section": "problem",
+      "text": "Cena lotu do Wiedeń przez kilka dni tylko rosła i rosła.",
+      "visualPrompt": "Wiedeń famous landmark cinematic, travel destination"
+    },
+    {
+      "index": 2,
+      "section": "scene",
+      "text": "Wyglądała na zbyt wysoką, więc wielu po prostu się poddało.",
+      "visualPrompt": "person looking at phone disappointed at high price, airport"
+    },
+    {
+      "index": 3,
+      "section": "solution",
+      "text": "Ale Flight Price Watch sprawdza ceny całą dobę i złapał właściwy moment.",
+      "visualPrompt": "real Flight Price Watch tracker page screen recording",
+      "sourceClip": "tracker-live.mp4",
+      "clipStartSec": 2.0
+    },
+    {
+      "index": 4,
+      "section": "scene",
+      "text": "Cena spadła do 74 euro. To prawdziwa, żywa cena na dziś.",
+      "visualPrompt": "happy traveler celebrating on phone, relief and joy"
+    },
+    {
+      "index": 5,
+      "section": "scene",
+      "text": "Tyle oszczędzasz tylko dlatego, że śledziłeś cenę w odpowiednim czasie.",
+      "visualPrompt": "Wiedeń beautiful streets and views, sunny travel vibe"
+    },
+    {
+      "index": 6,
+      "section": "scene",
+      "text": "Takie ceny długo się nie utrzymują, więc trzeba złapać tę chwilę.",
+      "visualPrompt": "airport departure board and planes, sense of urgency"
+    },
+    {
+      "index": 7,
+      "section": "cta",
+      "text": "Chcesz zaoszczędzić tak samo? Śledź ceny za darmo. Link w opisie.",
+      "visualPrompt": "traveler with backpack walking to gate at golden hour"
+    }
+  ]
+}
