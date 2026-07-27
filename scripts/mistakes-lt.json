@@ -1,0 +1,14 @@
+{
+  "topic": "Educational — 3 mistakes buying flights (LT)",
+  "language": "lithuanian",
+  "lines": [
+    {"index":0,"section":"hook","text":"Trys klaidos, dėl kurių tu permoki už skrydžius. Pirma pati brangiausia.","visualPrompt":"person looking shocked at expensive flight price on laptop"},
+    {"index":1,"section":"scene","text":"Pirma klaida: perki bilietą iškart, kai tik pamatai kainą.","visualPrompt":"hand quickly clicking buy button, impulsive purchase"},
+    {"index":2,"section":"scene","text":"Kainos svyruoja kiekvieną dieną, todėl skubėjimas dažnai kainuoja brangiau.","visualPrompt":"fluctuating price chart going up and down, financial"},
+    {"index":3,"section":"scene","text":"Antra klaida: tikrini kainą tik kartą ir daugiau nebegrįžti.","visualPrompt":"person checking phone once then putting it away, missed chance"},
+    {"index":4,"section":"solution","text":"Todėl Flight Price Watch tikrina kainą už tave visą parą.","visualPrompt":"real Flight Price Watch tracker page screen recording","sourceClip":"tracker-app.mp4","clipStartSec":2.5},
+    {"index":5,"section":"scene","text":"Trečia klaida: lauki mistinio pigiausio antradienio, kurio nebėra.","visualPrompt":"calendar with tuesday circled, myth debunked, question mark"},
+    {"index":6,"section":"scene","text":"Geriausias metas pirkti yra tada, kai kaina realiai nukrenta.","visualPrompt":"green downward price arrow, good deal moment"},
+    {"index":7,"section":"cta","text":"Nustok permokėti. Sek kainas nemokamai. Nuoroda aprašyme.","visualPrompt":"happy traveler with boarding pass, confident smile"}
+  ]
+}

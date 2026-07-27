@@ -1,0 +1,14 @@
+{
+  "topic": "TikTok skit — friend overpaid, you didn't (EN)",
+  "language": "english",
+  "lines": [
+    {"index":0,"section":"hook","text":"POV: your friend just booked a flight for two hundred eighty euros.","visualPrompt":"person proudly showing phone to friend, living room, casual"},
+    {"index":1,"section":"scene","text":"Without checking anything. Just booked it. Confident.","visualPrompt":"person tapping phone confidently, careless booking"},
+    {"index":2,"section":"scene","text":"So you open Flight Price Watch. Same flight. Same dates.","visualPrompt":"hand opening travel app on phone, calm and focused"},
+    {"index":3,"section":"solution","text":"And the app shows the price the app has been tracking all week.","visualPrompt":"real Flight Price Watch tracker page screen recording","sourceClip":"tracker-app.mp4","clipStartSec":2.5},
+    {"index":4,"section":"scene","text":"One hundred forty euros. For the exact same seat.","visualPrompt":"surprised happy face looking at cheaper price on phone"},
+    {"index":5,"section":"scene","text":"You didn't get lucky. You just watched the price instead of guessing.","visualPrompt":"two friends, one shocked one smug, funny contrast"},
+    {"index":6,"section":"scene","text":"Your friend is still recovering. You're already packing.","visualPrompt":"happy person packing a suitcase, excited for trip"},
+    {"index":7,"section":"cta","text":"Don't guess the price. Track it. Link in bio.","visualPrompt":"traveler walking through airport confidently, golden hour"}
+  ]
+}

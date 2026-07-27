@@ -69,11 +69,8 @@ def buffer_headers():
             "Content-Type": "application/json"}
 
 
-def resolve_channel_id(client: httpx.Client) -> str:
-    """Env override, else the first connected Instagram channel."""
-    forced = os.environ.get("BUFFER_CHANNEL_ID", "").strip()
-    if forced:
-        return forced
+def resolve_channels(client: httpx.Client) -> dict:
+    """{service: channel_id} for all connected Buffer channels."""
     r = client.post(BUFFER_API, headers=buffer_headers(),
                     json={"query": "{ account { organizations { id } } }"})
     orgs = r.json().get("data", {}).get("account", {}).get("organizations", [])
@@ -82,10 +79,7 @@ def resolve_channel_id(client: httpx.Client) -> str:
     oid = orgs[0]["id"]
     q = '{ channels(input:{organizationId:"%s"}){ id service } }' % oid
     r = client.post(BUFFER_API, headers=buffer_headers(), json={"query": q})
-    for c in r.json().get("data", {}).get("channels", []) or []:
-        if c.get("service") == "instagram":
-            return c["id"]
-    raise RuntimeError("Buffer: no Instagram channel connected")
+    return {c["service"]: c["id"] for c in (r.json().get("data", {}).get("channels", []) or [])}
 
 
 CREATE_POST = """mutation($input: CreatePostInput!){
@@ -99,14 +93,15 @@ CREATE_POST = """mutation($input: CreatePostInput!){
     ... on RestProxyError { message } } }"""
 
 
-def publish_reel(client: httpx.Client, channel_id: str, video_url: str, caption: str) -> str:
+def publish_reel(client: httpx.Client, channel_id: str, video_url: str, caption: str, channel: str = "instagram") -> str:
+    meta = {"instagram": {"type": "reel", "shouldShareToFeed": True}} if channel == "instagram" else {channel: {}}
     variables = {"input": {
         "channelId": channel_id,
         "schedulingType": "automatic",
         "mode": "shareNow",
         "text": caption,
         "assets": [{"video": {"url": video_url}}],
-        "metadata": {"instagram": {"type": "reel", "shouldShareToFeed": True}},
+        "metadata": meta,
     }}
     r = client.post(BUFFER_API, headers=buffer_headers(),
                     json={"query": CREATE_POST, "variables": variables}, timeout=120)
@@ -132,7 +127,7 @@ def main():
             print("BUFFER_ACCESS_TOKEN not set — waiting")
             return
 
-        channel_id = None
+        channels = None
         today = date.today().isoformat()
 
         for reel_id in approved:
@@ -143,9 +138,11 @@ def main():
                 print(f"skip {reel_id}: files not found")
                 continue
 
-            post_date = "1970-01-01"
+            post_date, channel = "1970-01-01", "instagram"
             if os.path.exists(meta_path):
-                post_date = json.load(open(meta_path, encoding="utf-8")).get("post_date", post_date)
+                m = json.load(open(meta_path, encoding="utf-8"))
+                post_date = m.get("post_date", post_date)
+                channel = m.get("channel", "instagram")
             if today < post_date:
                 print(f"hold {reel_id}: post_date {post_date} is in the future")
                 continue
@@ -154,18 +151,23 @@ def main():
             video = videos[0].replace(os.sep, "/")
             video_url = f"https://raw.githubusercontent.com/{REPO}/main/{video}"
 
-            if channel_id is None:
-                channel_id = resolve_channel_id(client)
+            if channels is None:
+                channels = resolve_channels(client)
+            channel_id = channels.get(channel)
+            if not channel_id:
+                notify(client, f"⚠️ <b>{reel_id}</b>: канал {channel} не подключён в Buffer")
+                print(f"skip {reel_id}: no {channel} channel")
+                continue
 
-            print(f"publishing {reel_id} -> {video_url}")
+            print(f"publishing {reel_id} -> [{channel}] {video_url}")
             try:
-                post_id = publish_reel(client, channel_id, video_url, caption)
+                post_id = publish_reel(client, channel_id, video_url, caption, channel)
             except Exception as e:
                 notify(client, f"⚠️ Автопубликация <b>{reel_id}</b> не удалась: {str(e)[:200]}")
                 print(f"FAILED {reel_id}: {e}", file=sys.stderr)
                 continue
             mark_published(client, reel_id)
-            notify(client, f"🎉 <b>{reel_id}</b> отправлен в Instagram через Buffer (post {post_id})")
+            notify(client, f"🎉 <b>{reel_id}</b> отправлен в {channel} через Buffer (post {post_id})")
             print(f"PUBLISHED {reel_id}: {post_id}")
 
 

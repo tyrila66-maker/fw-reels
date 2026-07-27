@@ -1,0 +1,14 @@
+{
+  "topic": "Destination — weekend cities from Warsaw (PL)",
+  "language": "polish",
+  "lines": [
+    {"index":0,"section":"hook","text":"Weekend z Warszawy? Wylatujesz w piątek, wracasz w niedzielę.","visualPrompt":"couple with small bags walking in european old town evening"},
+    {"index":1,"section":"scene","text":"Wiedeń na kawę i sztrudel, albo Barcelona na tapas i słońce.","visualPrompt":"vienna coffee and barcelona street split, appetizing travel"},
+    {"index":2,"section":"scene","text":"Rzym na prawdziwą pizzę, albo Ateny na słońce i historię.","visualPrompt":"rome pizza and athens acropolis, sunny mediterranean"},
+    {"index":3,"section":"solution","text":"Flight Price Watch pokazuje żywe ceny tych weekendowych lotów.","visualPrompt":"real Flight Price Watch tracker page screen recording","sourceClip":"tracker-app.mp4","clipStartSec":2.5},
+    {"index":4,"section":"scene","text":"I sprawdza je całą dobę, żeby złapać najniższą cenę.","visualPrompt":"green falling price chart, best deal moment"},
+    {"index":5,"section":"scene","text":"Wybierasz miasto nie po cenie, tylko po tym, na co masz ochotę.","visualPrompt":"happy friends at outdoor european cafe, weekend vibe"},
+    {"index":6,"section":"scene","text":"Dwa dni, jedno miasto, i wracasz jak po prawdziwych wakacjach.","visualPrompt":"person returning home smiling with small suitcase, content"},
+    {"index":7,"section":"cta","text":"Najtańsze weekendowe loty. Link w opisie.","visualPrompt":"traveler walking european street at golden hour, cheerful"}
+  ]
+}
