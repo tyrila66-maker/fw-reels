@@ -169,8 +169,24 @@ def tg_video(client, path, caption, reel_id):
                     files={"video": (os.path.basename(path), f, "video/mp4")}, timeout=600)
 
 
-def render(reel_id, script, caption, meta, reel_dir, extra_note=""):
+def ensure_durations(script):
+    """Silent reels are cut to line.durationSec (music, not voice). When a script
+    has no per-line timing, estimate it from text length so any prepared script
+    works without hand-tuning — hooks/CTAs read a touch slower, min 2.2s."""
+    for ln in script.get("lines", []):
+        if not ln.get("durationSec"):
+            words = len((ln.get("text") or "").split())
+            base = 1.5 + words / 2.6
+            if ln.get("section") in ("hook", "cta", "solution"):
+                base += 0.5
+            ln["durationSec"] = round(max(2.2, min(6.0, base)), 1)
+    return script
+
+
+def render(reel_id, script, caption, meta, reel_dir, extra_note="", silent=True):
     os.makedirs(reel_dir, exist_ok=True)
+    if silent:
+        script = ensure_durations(script)
     sp = os.path.join(PIPE, "job-script.json")
     json.dump(script, open(sp, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
     open(os.path.join(reel_dir, "caption.txt"), "w", encoding="utf-8").write(caption.strip() + "\n")
@@ -178,8 +194,12 @@ def render(reel_id, script, caption, meta, reel_dir, extra_note=""):
     json.dump(meta, open(os.path.join(reel_dir, "meta.json"), "w", encoding="utf-8"))
     env = dict(os.environ); env["ANTHROPIC_API_KEY"] = ""
     raw = os.path.join(reel_dir, f"{reel_id}-raw.mp4")
-    run(["npx", "ts-node", "src/index.ts", reel_id, "--script", sp,
-         "--music", os.path.join("assets", "_ambient_music.wav"), "--out", raw], cwd=PIPE, env=env)
+    music = "_calm_music.wav" if silent else "_ambient_music.wav"
+    cmd = ["npx", "ts-node", "src/index.ts", reel_id, "--script", sp,
+           "--music", os.path.join("assets", music), "--out", raw]
+    if silent:
+        cmd += ["--no-voiceover", "--subtitle-position", "center"]
+    run(cmd, cwd=PIPE, env=env)
     post = os.path.join(reel_dir, f"{reel_id}-post.mp4")
     run([find_bin("ffmpeg"), "-y", "-v", "error", "-i", raw, "-c:v", "libx264", "-preset", "medium",
          "-crf", "26", "-maxrate", "1400k", "-bufsize", "2800k", "-c:a", "aac", "-b:a", "128k",
@@ -230,8 +250,8 @@ def main():
                     print("record failed:", e)
             script, caption = templates.build_price_drop(drop_city, frm, to, lang, src)
             reel_id = f"drop-{slug(drop_city)}-{lang}"
-            meta = {"post_date": date.today().isoformat(), "slot": "now", "lang": lang, "channel": "instagram"}
-            post, dur = render(reel_id, script, caption, meta, os.path.join(ROOT, reel_id))
+            meta = {"post_date": date.today().isoformat(), "slot": "now", "lang": lang, "channel": "instagram", "silent": True}
+            post, dur = render(reel_id, script, caption, meta, os.path.join(ROOT, reel_id), silent=True)
             git_push(reel_id, f"{reel_id}: live drop from bot command")
             tg_video(client, post,
                      f"🎬 Дроп-рилс по твоему сигналу — {drop_city} {frm}→{to}€ ({lang.upper()}, {dur:.0f}s)\n"
@@ -308,9 +328,11 @@ def main():
             return
 
         reel_id = job["id"]
+        # Голос временно недоступен (квота ElevenLabs) → по умолчанию тихий формат.
+        silent = job.get("silent", True)
         meta = {"post_date": job["post_date"], "slot": job.get("slot", "12:00"),
-                "lang": job["lang"], "channel": job.get("channel", "instagram")}
-        post, dur = render(reel_id, script, caption, meta, os.path.join(ROOT, reel_id))
+                "lang": job["lang"], "channel": job.get("channel", "instagram"), "silent": silent}
+        post, dur = render(reel_id, script, caption, meta, os.path.join(ROOT, reel_id), silent=silent)
 
         job["status"] = "rendered"
         json.dump(queue, open(queue_path, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
@@ -319,8 +341,9 @@ def main():
             mark(client, reel_id, "resent")
 
         head = "🔁 ПЕРЕДЕЛКА" if feedback else "🎬 Новый рилс (собран автоматически)"
+        fmt = "🔇 без озвучки, спокойная музыка" if silent else "🔊 с озвучкой"
         tg_video(client, post,
-                 f"{head} — {reel_id} ({job['lang'].upper()}, {dur:.0f}s)\n"
+                 f"{head} — {reel_id} ({job['lang'].upper()}, {dur:.0f}s, {meta['channel']})\n{fmt}\n"
                  f"⏰ Слот: {job['post_date']} {job.get('slot','')} — после ✅ опубликуется сам.\n{tg_summary}\n"
                  f"⚠️ качество в TG сжато, оценивай контент.\n\n📝 Подпись:\n————\n{caption.strip()}", reel_id)
         print("done:", reel_id)

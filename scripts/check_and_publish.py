@@ -16,6 +16,7 @@ import glob
 import json
 import os
 import sys
+import time
 from datetime import date
 
 import httpx
@@ -23,6 +24,13 @@ import httpx
 BUFFER_API = "https://api.buffer.com/graphql"
 PREFIX = "reel-approval-"
 REPO = os.environ.get("GITHUB_REPOSITORY", "tyrila66-maker/fw-reels")
+
+# Buffer fetches the video from raw.githubusercontent.com, which can lag a few
+# minutes behind a fresh push. These messages mean "try the exact same request
+# again in a moment", not "this reel is broken".
+RETRYABLE = ("could not be read", "could not be downloaded", "not be found",
+             "restproxyerror", "unexpectederror", "try again", "timeout",
+             "temporarily", "processing")
 
 
 def sb_headers():
@@ -93,6 +101,21 @@ CREATE_POST = """mutation($input: CreatePostInput!){
     ... on RestProxyError { message } } }"""
 
 
+def wait_for_raw(client: httpx.Client, url: str, tries: int = 6, delay: int = 8) -> bool:
+    """Poll the public raw URL until the CDN serves it (200), so Buffer's own
+    fetcher is likely to see it too. Returns False if it never became ready."""
+    for i in range(tries):
+        try:
+            r = client.get(url, headers={"Range": "bytes=0-1023"}, timeout=20)
+            if r.status_code in (200, 206):
+                return True
+        except httpx.HTTPError:
+            pass
+        if i < tries - 1:
+            time.sleep(delay)
+    return False
+
+
 def publish_reel(client: httpx.Client, channel_id: str, video_url: str, caption: str, channel: str = "instagram") -> str:
     meta = {"instagram": {"type": "reel", "shouldShareToFeed": True}} if channel == "instagram" else {channel: {}}
     variables = {"input": {
@@ -160,11 +183,29 @@ def main():
                 continue
 
             print(f"publishing {reel_id} -> [{channel}] {video_url}")
-            try:
-                post_id = publish_reel(client, channel_id, video_url, caption, channel)
-            except Exception as e:
-                notify(client, f"⚠️ Автопубликация <b>{reel_id}</b> не удалась: {str(e)[:200]}")
-                print(f"FAILED {reel_id}: {e}", file=sys.stderr)
+            if not wait_for_raw(client, video_url):
+                print(f"hold {reel_id}: raw URL not yet served by CDN, retry next run")
+                continue
+
+            post_id, last_err = None, None
+            for attempt in range(3):
+                try:
+                    post_id = publish_reel(client, channel_id, video_url, caption, channel)
+                    break
+                except Exception as e:
+                    last_err = e
+                    if any(p in str(e).lower() for p in RETRYABLE) and attempt < 2:
+                        print(f"retry {reel_id} (attempt {attempt+1}): {e}")
+                        time.sleep(20)
+                        continue
+                    break
+            if post_id is None:
+                # Transient CDN errors: stay 'approved' so the next cron run retries.
+                if any(p in str(last_err).lower() for p in RETRYABLE):
+                    print(f"hold {reel_id}: transient error, retry next run: {last_err}")
+                    continue
+                notify(client, f"⚠️ Автопубликация <b>{reel_id}</b> не удалась: {str(last_err)[:200]}")
+                print(f"FAILED {reel_id}: {last_err}", file=sys.stderr)
                 continue
             mark_published(client, reel_id)
             notify(client, f"🎉 <b>{reel_id}</b> отправлен в {channel} через Buffer (post {post_id})")

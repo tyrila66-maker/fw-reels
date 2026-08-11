@@ -1,14 +1,21 @@
 {
-  "comment": "Источник истины для облачного производства (produce-reels.yml). Статусы: queued -> rendered (ждёт ✅) -> published. Даты Vilnius. price-drop через шаблон templates.py (без Claude); вечнозелёные — script_file + caption_file в scripts/. channel: instagram|tiktok.",
+  "comment": "Источник истины для облачного производства (produce-reels.yml). Статусы: queued -> rendered (ждёт ✅) -> published. Даты Vilnius. Голос ElevenLabs недоступен → все новые рилсы silent:true (без озвучки, спокойная музыка, субтитры по центру). channel: instagram|tiktok. produce.py сам оценивает durationSec, если их нет.",
   "items": [
     {"id": "chapters-ru", "post_date": "2026-07-17", "lang": "ru", "status": "published", "note": "опубликован 18.07"},
     {"id": "price-drop-2-pl", "post_date": "2026-07-20", "lang": "pl", "status": "published", "note": "сделан как drop-wiede-pl (Вена), 23.07"},
     {"id": "departure-day", "post_date": "2026-07-24", "lang": "lt", "status": "missed", "note": "момент упущен, в архив идей"},
 
-    {"id": "tiktok-friend-overpaid-en", "post_date": "2026-07-28", "slot": "19:00", "lang": "en", "channel": "tiktok", "status": "queued", "script_file": "tiktok-friend-overpaid-en.json", "caption_file": "tiktok-friend-overpaid-en.caption.txt"},
-    {"id": "mistakes-lt", "post_date": "2026-07-30", "slot": "12:00", "lang": "lt", "channel": "instagram", "status": "queued", "script_file": "mistakes-lt.json", "caption_file": "mistakes-lt.caption.txt"},
-    {"id": "weekend-cities-pl", "post_date": "2026-08-01", "slot": "19:00", "lang": "pl", "channel": "instagram", "status": "queued", "script_file": "weekend-cities-pl.json", "caption_file": "weekend-cities-pl.caption.txt"},
-    {"id": "tiktok-3am-en", "post_date": "2026-08-03", "slot": "19:00", "lang": "en", "channel": "tiktok", "status": "queued", "script_file": "tiktok-3am-en.json", "caption_file": "tiktok-3am-en.caption.txt"},
-    {"id": "tenerife-escape-lt", "post_date": "2026-08-05", "slot": "12:00", "lang": "lt", "channel": "instagram", "status": "queued", "script_file": "tenerife-escape-lt.json", "caption_file": "tenerife-escape-lt.caption.txt"}
+    {"id": "tiktok-price-game-silent", "post_date": "2026-07-27", "lang": "en", "channel": "tiktok", "status": "published", "note": "silent, опубликован 27.07"},
+    {"id": "mistakes-lt-silent", "post_date": "2026-07-27", "lang": "lt", "channel": "instagram", "status": "published", "note": "silent + спокойная музыка, опубликован 27.07"},
+    {"id": "tiktok-friend-silent", "post_date": "2026-08-11", "lang": "en", "channel": "tiktok", "status": "published", "note": "silent, опубликован вручную 11.08"},
+
+    {"id": "tiktok-friend-overpaid-en", "post_date": "2026-07-28", "lang": "en", "channel": "tiktok", "status": "published", "note": "заменён silent-версией tiktok-friend-silent"},
+    {"id": "mistakes-lt", "post_date": "2026-07-30", "lang": "lt", "channel": "instagram", "status": "published", "note": "заменён silent-версией mistakes-lt-silent"},
+    {"id": "weekend-cities-pl", "post_date": "2026-08-01", "lang": "pl", "channel": "instagram", "status": "published", "note": "заменён silent-версией weekend-cities-pl-silent"},
+
+    {"id": "weekend-cities-pl-silent", "post_date": "2026-08-11", "slot": "19:00", "lang": "pl", "channel": "instagram", "silent": true, "status": "rendered", "note": "готов, ждёт ✅ (TG msg 3031)"},
+
+    {"id": "tenerife-escape-lt", "post_date": "2026-08-13", "slot": "12:00", "lang": "lt", "channel": "instagram", "silent": true, "status": "queued", "script_file": "tenerife-escape-lt.json", "caption_file": "tenerife-escape-lt.caption.txt"},
+    {"id": "tiktok-3am-en", "post_date": "2026-08-16", "slot": "19:00", "lang": "en", "channel": "tiktok", "silent": true, "status": "queued", "script_file": "tiktok-3am-en.json", "caption_file": "tiktok-3am-en.caption.txt"}
   ]
 }
