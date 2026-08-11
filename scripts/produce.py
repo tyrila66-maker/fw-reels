@@ -16,6 +16,7 @@
 import glob
 import json
 import os
+import platform
 import re
 import subprocess
 import sys
@@ -124,7 +125,28 @@ def record_page(path, out_mp4):
 def find_bin(name):
     hits = glob.glob(os.path.join(PIPE, "node_modules", f"{name}-static", "**", name), recursive=True) + \
            glob.glob(os.path.join(PIPE, "node_modules", f"{name}-static", "**", f"{name}.exe"), recursive=True)
-    return hits[0] if hits else name
+    if not hits:
+        return name
+    # ffprobe-static ships binaries for ALL platforms (bin/<os>/<arch>/…); pick the
+    # one matching this runner, else glob order can hand back a foreign binary
+    # (e.g. darwin/arm64 on a Linux CI runner -> "Exec format error").
+    sysname = {"Linux": "linux", "Windows": "win32", "Darwin": "darwin"}.get(platform.system(), "")
+    machine = platform.machine().lower()
+    arch = "x64" if machine in ("x86_64", "amd64") else "arm64" if machine in ("arm64", "aarch64") else machine
+
+    def score(p):
+        pl = p.replace("\\", "/").lower()
+        s = 0
+        if sysname and f"/{sysname}/" in pl:
+            s += 2
+        if arch and f"/{arch}/" in pl:
+            s += 1
+        for other in ("darwin", "linux", "win32"):
+            if other != sysname and f"/{other}/" in pl:
+                s -= 3
+        return s
+
+    return max(hits, key=score)
 
 
 def run(cmd, **kw):
