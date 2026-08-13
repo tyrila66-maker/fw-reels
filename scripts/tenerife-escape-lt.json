@@ -1,14 +1,14 @@
 {
-  "topic": "Destination — escape winter to Tenerife (LT)",
+  "topic": "Destination — escape winter to Tenerife (LT, silent)",
   "language": "lithuanian",
   "lines": [
-    {"index":0,"section":"hook","text":"Kol Vilniuje minus penki ir tamsu, Tenerifėje plius dvidešimt penki.","visualPrompt":"split feeling cold grey city vs sunny tropical beach, contrast"},
-    {"index":1,"section":"scene","text":"Vandenynas, juodo smėlio paplūdimiai ir saulė net žiemą.","visualPrompt":"tenerife black sand beach ocean waves sunny winter"},
-    {"index":2,"section":"scene","text":"Skrydžiai iš Vilniaus ir Varšuvos vyksta visą žiemos sezoną.","visualPrompt":"airplane wing over ocean approaching volcanic island"},
-    {"index":3,"section":"solution","text":"O Flight Price Watch stebi šių skrydžių kainas visą parą.","visualPrompt":"real Flight Price Watch tracker page screen recording","sourceClip":"tracker-app.mp4","clipStartSec":2.5},
-    {"index":4,"section":"scene","text":"Ir parodo tiksliai tą akimirką, kai skristi pigiausia.","visualPrompt":"green falling price chart, good deal indicator"},
-    {"index":5,"section":"scene","text":"Teidės ugnikalnis, vynuogynai ir vandenynas laukia visai netoli.","visualPrompt":"teide volcano tenerife dramatic landscape sunny"},
-    {"index":6,"section":"scene","text":"Šiek tiek suplanuoji, ir žiemą sutinki su saule veide.","visualPrompt":"happy person on sunny beach smiling, winter escape"},
-    {"index":7,"section":"cta","text":"Pabėk nuo žiemos pigiau. Sek kainas nemokamai. Nuoroda aprašyme.","visualPrompt":"traveler with sunglasses walking on sunny promenade"}
+    {"index":0,"section":"hook","text":"Kol Vilniuje minus penki ir tamsu, Tenerifėje plius dvidešimt penki.","durationSec":3.5,"visualPrompt":"split feeling cold grey city vs sunny tropical beach, contrast"},
+    {"index":1,"section":"scene","text":"Vandenynas, juodo smėlio paplūdimiai ir saulė net žiemą.","durationSec":2.9,"visualPrompt":"tenerife black sand beach ocean waves sunny winter"},
+    {"index":2,"section":"scene","text":"Skrydžiai iš Vilniaus vyksta visą žiemos sezoną.","durationSec":2.9,"visualPrompt":"airplane wing over ocean approaching volcanic island"},
+    {"index":3,"section":"solution","text":"Flight Price Watch stebi šių skrydžių kainą visą parą.","durationSec":3.8,"visualPrompt":"real Flight Price Watch tracker page — Vilnius to Tenerife price","sourceClip":"tracker-tenerife.mp4","clipStartSec":0.6},
+    {"index":4,"section":"scene","text":"Ir parodo tiksliai tą akimirką, kai skristi pigiausia.","durationSec":3.0,"visualPrompt":"green falling price chart, good deal indicator"},
+    {"index":5,"section":"scene","text":"Teidės ugnikalnis, vynuogynai ir vandenynas laukia visai netoli.","durationSec":3.0,"visualPrompt":"teide volcano tenerife dramatic landscape sunny"},
+    {"index":6,"section":"scene","text":"Šiek tiek suplanuoji, ir žiemą sutinki su saule veide.","durationSec":3.0,"visualPrompt":"happy person on sunny beach smiling, winter escape"},
+    {"index":7,"section":"cta","text":"Pabėk nuo žiemos pigiau. Sek kainas nemokamai. Nuoroda aprašyme.","durationSec":3.5,"visualPrompt":"traveler with sunglasses walking on sunny promenade"}
   ]
 }

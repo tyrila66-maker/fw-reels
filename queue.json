@@ -89,7 +89,8 @@
       "silent": true,
       "status": "rendered",
       "script_file": "tenerife-escape-lt.json",
-      "caption_file": "tenerife-escape-lt.caption.txt"
+      "caption_file": "tenerife-escape-lt.caption.txt",
+      "music": "_warm_music.wav"
     },
     {
       "id": "tiktok-3am-en",

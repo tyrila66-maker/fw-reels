@@ -205,7 +205,7 @@ def ensure_durations(script):
     return script
 
 
-def render(reel_id, script, caption, meta, reel_dir, extra_note="", silent=True):
+def render(reel_id, script, caption, meta, reel_dir, extra_note="", silent=True, music=None):
     os.makedirs(reel_dir, exist_ok=True)
     if silent:
         script = ensure_durations(script)
@@ -216,9 +216,10 @@ def render(reel_id, script, caption, meta, reel_dir, extra_note="", silent=True)
     json.dump(meta, open(os.path.join(reel_dir, "meta.json"), "w", encoding="utf-8"))
     env = dict(os.environ); env["ANTHROPIC_API_KEY"] = ""
     raw = os.path.join(reel_dir, f"{reel_id}-raw.mp4")
-    music = "_calm_music.wav" if silent else "_ambient_music.wav"
+    # per-reel music override (queue item "music"), else calm (silent) / ambient (voiced)
+    music_file = music or ("_calm_music.wav" if silent else "_ambient_music.wav")
     cmd = ["npx", "ts-node", "src/index.ts", reel_id, "--script", sp,
-           "--music", os.path.join("assets", music), "--out", raw]
+           "--music", os.path.join("assets", music_file), "--out", raw]
     if silent:
         cmd += ["--no-voiceover", "--subtitle-position", "center"]
     run(cmd, cwd=PIPE, env=env)
@@ -354,7 +355,8 @@ def main():
         silent = job.get("silent", True)
         meta = {"post_date": job["post_date"], "slot": job.get("slot", "12:00"),
                 "lang": job["lang"], "channel": job.get("channel", "instagram"), "silent": silent}
-        post, dur = render(reel_id, script, caption, meta, os.path.join(ROOT, reel_id), silent=silent)
+        post, dur = render(reel_id, script, caption, meta, os.path.join(ROOT, reel_id),
+                           silent=silent, music=job.get("music"))
 
         job["status"] = "rendered"
         json.dump(queue, open(queue_path, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
