@@ -1,0 +1,64 @@
+{
+  "topic": "TikTok skit — 3am refreshing prices (EN)",
+  "language": "english",
+  "lines": [
+    {
+      "index": 0,
+      "section": "hook",
+      "text": "POV: it's three in the morning and you're still refreshing flight prices.",
+      "visualPrompt": "person in dark room lit by phone screen at night, tired",
+      "durationSec": 6.0
+    },
+    {
+      "index": 1,
+      "section": "scene",
+      "text": "Refresh. Same price. Refresh. Up by ten. Refresh. Down by five.",
+      "visualPrompt": "finger refreshing phone repeatedly, glowing screen in dark",
+      "durationSec": 5.7
+    },
+    {
+      "index": 2,
+      "section": "scene",
+      "text": "You tell yourself just one more check and then you'll sleep.",
+      "visualPrompt": "tired person rubbing eyes, phone in hand, late night",
+      "durationSec": 5.7
+    },
+    {
+      "index": 3,
+      "section": "solution",
+      "text": "Or you let Flight Price Watch do the staring for you, all night.",
+      "visualPrompt": "real Flight Price Watch tracker page screen recording",
+      "sourceClip": "tracker-app.mp4",
+      "clipStartSec": 2.5,
+      "durationSec": 6.0
+    },
+    {
+      "index": 4,
+      "section": "scene",
+      "text": "It tracks the price around the clock and pings you when it drops.",
+      "visualPrompt": "phone notification of price drop, calm bedside table",
+      "durationSec": 6.0
+    },
+    {
+      "index": 5,
+      "section": "scene",
+      "text": "So you can actually sleep. Wild concept, I know.",
+      "visualPrompt": "person sleeping peacefully, cozy bed, morning light",
+      "durationSec": 5.0
+    },
+    {
+      "index": 6,
+      "section": "scene",
+      "text": "You wake up, the price fell, you book. No three a.m. suffering.",
+      "visualPrompt": "happy person with morning coffee checking phone, relaxed",
+      "durationSec": 6.0
+    },
+    {
+      "index": 7,
+      "section": "cta",
+      "text": "Stop refreshing at 3am. Let the app watch. Link in bio.",
+      "visualPrompt": "traveler with backpack leaving home in the morning, cheerful",
+      "durationSec": 6.0
+    }
+  ]
+}

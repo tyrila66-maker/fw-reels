@@ -99,7 +99,7 @@
       "lang": "en",
       "channel": "tiktok",
       "silent": true,
-      "status": "queued",
+      "status": "rendered",
       "script_file": "tiktok-3am-en.json",
       "caption_file": "tiktok-3am-en.caption.txt"
     }
