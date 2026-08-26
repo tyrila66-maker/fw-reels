@@ -117,9 +117,23 @@ def record_page(path, out_mp4):
         pg.wait_for_timeout(1500)
         ctx.close(); b.close()
     webm = max(glob.glob(os.path.join(rec_dir, "*.webm")), key=os.path.getmtime)
+    full = os.path.join(rec_dir, "_full.mp4")
     run([find_bin("ffmpeg"), "-y", "-v", "error", "-i", webm, "-c:v", "libx264",
-         "-preset", "veryfast", "-crf", "20", "-pix_fmt", "yuv420p", "-an", out_mp4])
-    os.remove(webm)
+         "-preset", "veryfast", "-crf", "20", "-pix_fmt", "yuv420p", "-an", full])
+    # Render cold-starts slowly, so the first seconds are a white loading screen.
+    # The app is dark-themed → trim up to the first dark (content-loaded) frame.
+    raw = subprocess.run([find_bin("ffmpeg"), "-v", "error", "-i", full, "-vf",
+                          "fps=4,scale=32:56", "-f", "rawvideo", "-pix_fmt", "gray", "-"],
+                         capture_output=True).stdout
+    fsize, trim = 32 * 56, 0.0
+    for i in range(len(raw) // fsize):
+        chunk = raw[i * fsize:(i + 1) * fsize]
+        if sum(chunk) / len(chunk) < 90:      # dark => content on screen
+            trim = max(0.0, i / 4.0 - 0.2)
+            break
+    run([find_bin("ffmpeg"), "-y", "-v", "error", "-ss", str(trim), "-i", full,
+         "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", "-pix_fmt", "yuv420p", "-an", out_mp4])
+    os.remove(webm); os.remove(full)
 
 
 def find_bin(name):
@@ -216,8 +230,9 @@ def render(reel_id, script, caption, meta, reel_dir, extra_note="", silent=True,
     json.dump(meta, open(os.path.join(reel_dir, "meta.json"), "w", encoding="utf-8"))
     env = dict(os.environ); env["ANTHROPIC_API_KEY"] = ""
     raw = os.path.join(reel_dir, f"{reel_id}-raw.mp4")
-    # per-reel music override (queue item "music"), else calm (silent) / ambient (voiced)
-    music_file = music or ("_calm_music.wav" if silent else "_ambient_music.wav")
+    # per-reel music override (queue item "music"), else the calm bed by default
+    # (the tense _ambient track was rejected — only used when explicitly requested)
+    music_file = music or "_calm_music.wav"
     cmd = ["npx", "ts-node", "src/index.ts", reel_id, "--script", sp,
            "--music", os.path.join("assets", music_file), "--out", raw]
     if silent:
@@ -350,11 +365,21 @@ def main():
                             f"Вариант: пришли как price-drop-команду, либо я заготовлю сценарий-файл.\nБриф: {job.get('brief','')[:300]}")
             return
 
+        # If we recorded the app live for THIS reel, put that clip on the tracker
+        # scene instead of the generic committed clip — otherwise a reel about, say,
+        # Tenerife shows the default Warsaw–Bucharest screen ("wrong route" declines).
+        if clips_note.startswith("tracker-live"):
+            for ln in script.get("lines", []):
+                if str(ln.get("sourceClip", "")).startswith("tracker"):
+                    ln["sourceClip"] = "tracker-live.mp4"
+                    ln["clipStartSec"] = 0.6
+
         reel_id = job["id"]
-        # Голос временно недоступен (квота ElevenLabs) → по умолчанию тихий формат.
-        silent = job.get("silent", True)
+        channel = job.get("channel", "instagram")
+        # IG снова с озвучкой (квота ElevenLabs вернулась); TikTok — тихий (пессимизирует AI-голос).
+        silent = job.get("silent", channel == "tiktok")
         meta = {"post_date": job["post_date"], "slot": job.get("slot", "12:00"),
-                "lang": job["lang"], "channel": job.get("channel", "instagram"), "silent": silent}
+                "lang": job["lang"], "channel": channel, "silent": silent}
         post, dur = render(reel_id, script, caption, meta, os.path.join(ROOT, reel_id),
                            silent=silent, music=job.get("music"))
 
