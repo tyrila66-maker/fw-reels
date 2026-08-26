@@ -1,0 +1,14 @@
+{
+  "topic": "Educational — flight prices swing daily, not on a schedule (RU, silent)",
+  "language": "russian",
+  "lines": [
+    {"index":0,"section":"hook","text":"Один и тот же рейс может подешеветь на 80% всего за один день.","durationSec":3.6,"visualPrompt":"dramatic falling price chart red arrow, numbers dropping fast"},
+    {"index":1,"section":"problem","text":"Билеты дешевеют не по расписанию — цена скачет непредсказуемо изо дня в день.","durationSec":3.2,"visualPrompt":"confused traveler looking at flight price on phone, question mark"},
+    {"index":2,"section":"scene","text":"Рейс Варшава–Берген за одни сутки упал с 394 до 56 евро.","durationSec":3.4,"visualPrompt":"Bergen Norway fjord landscape cinematic travel"},
+    {"index":3,"section":"solution","text":"Flight Price Watch проверяет цены на сотнях маршрутов круглосуточно.","durationSec":4.0,"visualPrompt":"real Flight Price Watch tracker page screen recording","sourceClip":"tracker-app.mp4","clipStartSec":2.5},
+    {"index":4,"section":"scene","text":"Рейс Варшава–Римини подешевел с 448 до 160 евро всего за сутки.","durationSec":3.4,"visualPrompt":"Rimini Italy beach coastline cinematic travel"},
+    {"index":5,"section":"scene","text":"Такие обвалы цены случаются почти на любом направлении каждую неделю.","durationSec":3.2,"visualPrompt":"airport departure board flight prices changing"},
+    {"index":6,"section":"scene","text":"Купить билет по интуиции — почти всегда переплатить за то же место.","durationSec":3.2,"visualPrompt":"person paying too much money frustrated at airport"},
+    {"index":7,"section":"cta","text":"Следи за ценами бесплатно и лови момент. Ссылка в описании.","durationSec":3.6,"visualPrompt":"happy traveler checking phone smiling airport gate"}
+  ]
+}

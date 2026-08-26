@@ -102,6 +102,32 @@
       "status": "rendered",
       "script_file": "tiktok-3am-en.json",
       "caption_file": "tiktok-3am-en.caption.txt"
+    },
+    {
+      "id": "volatility-edu-ru",
+      "post_date": "2026-08-26",
+      "slot": "19:00",
+      "lang": "ru",
+      "channel": "instagram",
+      "silent": true,
+      "status": "queued",
+      "script_file": "volatility-edu-ru.json",
+      "caption_file": "volatility-edu-ru.caption.txt",
+      "note": "изначально планировался на 19.08, момент был упущен (Павел отдыхал) — догоняем"
+    },
+    {
+      "id": "case-vno-kut-73",
+      "post_date": "2026-08-26",
+      "slot": "12:00",
+      "lang": "lt",
+      "channel": "instagram",
+      "silent": true,
+      "status": "queued",
+      "template": "price-drop",
+      "city": "Kutaisis",
+      "from": 373,
+      "to": 102,
+      "note": "изначально планировался на 21.08, момент был упущен (Павел отдыхал) — догоняем. Маршрут vno-kut подешевел -72.7% 04.08 (373->102), это реальный факт из истории, НО чекер этого маршрута падает с 23.08 (status=failed) — без live-записи страницы, дефолтный tracker-app.mp4"
     }
   ]
 }
