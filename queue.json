@@ -122,7 +122,7 @@
       "lang": "lt",
       "channel": "instagram",
       "silent": true,
-      "status": "queued",
+      "status": "rendered",
       "template": "price-drop",
       "city": "Kutaisis",
       "from": 373,
