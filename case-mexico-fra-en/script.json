@@ -1,12 +1,14 @@
 {
-  "topic": "Live price drop to Mexico City (english)",
+  "topic": "Live price drop to Mexico City (english) — remake per Pavel: new opening shot + different music",
   "language": "english",
   "lines": [
     {
       "index": 0,
       "section": "hook",
       "text": "2905 euros. And now suddenly just 944. Look at this.",
-      "visualPrompt": "dramatic falling price chart red arrow, numbers dropping fast"
+      "visualPrompt": "real Flight Price Watch tracker page screen recording, live price on screen",
+      "sourceClip": "tracker-live.mp4",
+      "clipStartSec": 0.6
     },
     {
       "index": 1,
@@ -24,9 +26,7 @@
       "index": 3,
       "section": "solution",
       "text": "But Flight Price Watch tracks prices all day and caught the right moment.",
-      "visualPrompt": "real Flight Price Watch tracker page screen recording",
-      "sourceClip": "tracker-live.mp4",
-      "clipStartSec": 0.6
+      "visualPrompt": "phone screen close-up scrolling flight search results, focused checking"
     },
     {
       "index": 4,
