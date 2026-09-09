@@ -1,0 +1,14 @@
+{
+  "topic": "Education — flight price volatility (EN, voiced) — Vilnius-Tallinn whipsaw",
+  "language": "english",
+  "lines": [
+    {"index":0,"section":"hook","text":"One flight. Four price crashes. Same week.","visualPrompt":"dramatic falling price arrow, red to green, financial motion, bold numbers"},
+    {"index":1,"section":"problem","text":"Flight prices don't just fall once and stay there. They can spike and crash again and again.","visualPrompt":"chaotic zigzag price line chart, unpredictable movement"},
+    {"index":2,"section":"scene","text":"Vilnius to Tallinn jumped from 192 euros down to just 41, in a single day.","visualPrompt":"tallinn old town aerial, scenic european city"},
+    {"index":3,"section":"solution","text":"Flight Price Watch checks prices around the clock and catches every single crash.","visualPrompt":"real Flight Price Watch tracker page, Vilnius to Tallinn volatile price chart","sourceClip":"tracker-app.mp4","clipStartSec":2.0},
+    {"index":4,"section":"scene","text":"Three days later, the same route did it again. 185 euros down to 41.","visualPrompt":"green falling price chart, best deal moment"},
+    {"index":5,"section":"scene","text":"That is four separate crashes on one route, all inside a single week.","visualPrompt":"calendar with repeated red drop icons, pattern"},
+    {"index":6,"section":"scene","text":"Buying on a gut feeling means paying full price while the real deal slips right by.","visualPrompt":"person hesitating at laptop booking flight, uncertain"},
+    {"index":7,"section":"cta","text":"Track prices for free and catch the crash yourself. Link in the description.","visualPrompt":"traveler happy with phone at airport, golden hour"}
+  ]
+}

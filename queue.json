@@ -130,6 +130,32 @@
       "from": 373,
       "to": 102,
       "note": "Павел: Кутаиси не выкладываем вообще (26.08)"
+    },
+    {
+      "id": "case-mexico-fra-en",
+      "post_date": "2026-09-09",
+      "slot": "12:00",
+      "lang": "en",
+      "channel": "instagram",
+      "status": "queued",
+      "template": "price-drop",
+      "city": "Mexico City",
+      "from": 2905,
+      "to": 944,
+      "record": "/track/f1-mexico-fra",
+      "note": "кейс: FRA-MEX -67.5% (2905€→944€, зафиксировано 07.09) — самый крупный дроп недели по сумме, EN по запросу Павла"
+    },
+    {
+      "id": "volatility-vno-tll-en",
+      "post_date": "2026-09-09",
+      "slot": "19:00",
+      "lang": "en",
+      "channel": "instagram",
+      "status": "queued",
+      "script_file": "volatility-vno-tll-en.json",
+      "caption_file": "volatility-vno-tll-en.caption.txt",
+      "record": "/track/ew-vno-tll",
+      "note": "образовательный: VNO-TLL метался 4 раза за неделю 04-07.09 (153→43, 185→41, 167→42, 192→41€) — EN по запросу Павла"
     }
   ]
 }
