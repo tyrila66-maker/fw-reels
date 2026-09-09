@@ -137,7 +137,7 @@
       "slot": "12:00",
       "lang": "en",
       "channel": "instagram",
-      "status": "queued",
+      "status": "rendered",
       "template": "price-drop",
       "city": "Mexico City",
       "from": 2905,

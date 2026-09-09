@@ -1,0 +1,56 @@
+{
+  "topic": "Live price drop to Mexico City (english)",
+  "language": "english",
+  "lines": [
+    {
+      "index": 0,
+      "section": "hook",
+      "text": "2905 euros. And now suddenly just 944. Look at this.",
+      "visualPrompt": "dramatic falling price chart red arrow, numbers dropping fast"
+    },
+    {
+      "index": 1,
+      "section": "problem",
+      "text": "The price of a flight to Mexico City kept climbing for days.",
+      "visualPrompt": "Mexico City famous landmark cinematic, travel destination"
+    },
+    {
+      "index": 2,
+      "section": "scene",
+      "text": "It looked way too expensive, so most people simply gave up.",
+      "visualPrompt": "person looking at phone disappointed at high price, airport"
+    },
+    {
+      "index": 3,
+      "section": "solution",
+      "text": "But Flight Price Watch tracks prices all day and caught the right moment.",
+      "visualPrompt": "real Flight Price Watch tracker page screen recording",
+      "sourceClip": "tracker-live.mp4",
+      "clipStartSec": 0.6
+    },
+    {
+      "index": 4,
+      "section": "scene",
+      "text": "It dropped to 944 euros. That is a real, live price for today.",
+      "visualPrompt": "happy traveler celebrating on phone, relief and joy"
+    },
+    {
+      "index": 5,
+      "section": "scene",
+      "text": "That is how much you save just by watching the price at the right time.",
+      "visualPrompt": "Mexico City beautiful streets and views, sunny travel vibe"
+    },
+    {
+      "index": 6,
+      "section": "scene",
+      "text": "Prices like this never last long, so you have to catch the moment.",
+      "visualPrompt": "airport departure board and planes, sense of urgency"
+    },
+    {
+      "index": 7,
+      "section": "cta",
+      "text": "Want to save the same way? Track prices for free. Link in the description.",
+      "visualPrompt": "traveler with backpack walking to gate at golden hour"
+    }
+  ]
+}
