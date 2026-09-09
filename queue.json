@@ -150,7 +150,7 @@
       "slot": "19:00",
       "lang": "en",
       "channel": "instagram",
-      "status": "queued",
+      "status": "rendered",
       "script_file": "volatility-vno-tll-en.json",
       "caption_file": "volatility-vno-tll-en.caption.txt",
       "record": "/track/ew-vno-tll",
