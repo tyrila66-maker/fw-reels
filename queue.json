@@ -138,12 +138,11 @@
       "lang": "en",
       "channel": "instagram",
       "status": "rendered",
-      "template": "price-drop",
-      "city": "Mexico City",
-      "from": 2905,
-      "to": 944,
+      "script_file": "case-mexico-fra-en.json",
+      "caption_file": "case-mexico-fra-en.caption.txt",
+      "music": "_ambient_music.wav",
       "record": "/track/f1-mexico-fra",
-      "note": "кейс: FRA-MEX -67.5% (2905€→944€, зафиксировано 07.09) — самый крупный дроп недели по сумме, EN по запросу Павла"
+      "note": "кейс: FRA-MEX -67.5% (2905€→944€, зафиксировано 07.09) — переделка по фидбэку Павла (16:42, 16:45): новая заставка (реальный трекер сразу в хуке вместо стокового графика) + другая музыка (ambient вместо calm)"
     },
     {
       "id": "volatility-vno-tll-en",
