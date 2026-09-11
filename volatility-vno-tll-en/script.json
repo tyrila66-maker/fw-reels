@@ -6,7 +6,9 @@
       "index": 0,
       "section": "hook",
       "text": "One flight. Four price crashes. Same week.",
-      "visualPrompt": "dramatic falling price arrow, red to green, financial motion, bold numbers"
+      "visualPrompt": "real Flight Price Watch tracker page, Vilnius to Tallinn volatile price chart, live price on screen",
+      "sourceClip": "tracker-live.mp4",
+      "clipStartSec": 0.6
     },
     {
       "index": 1,
@@ -24,9 +26,7 @@
       "index": 3,
       "section": "solution",
       "text": "Flight Price Watch checks prices around the clock and catches every single crash.",
-      "visualPrompt": "real Flight Price Watch tracker page, Vilnius to Tallinn volatile price chart",
-      "sourceClip": "tracker-live.mp4",
-      "clipStartSec": 0.6
+      "visualPrompt": "phone screen close-up scrolling flight search results, focused checking"
     },
     {
       "index": 4,
