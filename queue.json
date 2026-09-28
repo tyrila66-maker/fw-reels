@@ -168,6 +168,18 @@
       "caption_file": "case-f1-vegas-paris-lt.caption.txt",
       "record": "/track/f1-lasvegas-cdg",
       "note": "F1 Vegas GP из Парижа: было >1000€ → 641€ (~-40%), трекер в хуке — на сегодня 28.09"
+    },
+    {
+      "id": "ski-season-2627-en",
+      "post_date": "2026-09-30",
+      "slot": "12:00",
+      "lang": "en",
+      "channel": "instagram",
+      "silent": false,
+      "status": "rendered",
+      "script_file": "ski-season-2627-en.json",
+      "caption_file": "ski-season-2627-en.caption.txt",
+      "note": "глава «Лыжный сезон 2026/27» EN — бронируй зиму сейчас; без трекера (нет живого зимнего маршрута в приложении)"
     }
   ]
 }

@@ -1,0 +1,14 @@
+{
+  "topic": "Chapter — Ski season 2026/27, book winter now (EN, voiced)",
+  "language": "english",
+  "lines": [
+    {"index":0,"section":"hook","text":"Ski season is almost here — and the smartest time to book winter is right now, not in December.","visualPrompt":"epic snowy alps ski resort aerial, skiers on white slopes, bluebird day"},
+    {"index":1,"section":"scene","text":"The Alps, the Dolomites, the Tatras — Europe's best slopes are just a short flight away.","visualPrompt":"dramatic snowy mountain peaks, ski lifts, alpine village winter"},
+    {"index":2,"section":"problem","text":"But here's the catch: flights to the mountains swing the most in the weeks before winter.","visualPrompt":"snowy airport runway, plane de-icing, winter travel"},
+    {"index":3,"section":"solution","text":"Flight Price Watch tracks those winter routes around the clock.","visualPrompt":"cozy chalet with laptop showing a travel app, snow falling outside window"},
+    {"index":4,"section":"scene","text":"So the moment a fare to the slopes drops, you catch it — instead of overpaying in December.","visualPrompt":"skier carving fresh powder snow, spray, action, sunny"},
+    {"index":5,"section":"scene","text":"One quiet price drop can pay for your whole lift pass.","visualPrompt":"ski lift gondola over snowy forest, mountain panorama"},
+    {"index":6,"section":"scene","text":"Lock your flight early, and all that's left to do is wait for the first snow.","visualPrompt":"friends toasting après-ski by a fireplace, warm cozy winter evening"},
+    {"index":7,"section":"cta","text":"Plan your 2026/27 ski season the smart way. Track winter flights for free — link in bio.","visualPrompt":"snowboarder on mountain top at sunset, epic winter landscape"}
+  ]
+}
