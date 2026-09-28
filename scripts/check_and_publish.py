@@ -145,7 +145,7 @@ def publish_carousel(client: httpx.Client, channel_id: str, image_urls: list, ca
         "mode": "shareNow",
         "text": caption,
         "assets": [{"image": {"url": u}} for u in image_urls],
-        "metadata": {"instagram": {}},
+        "metadata": {"instagram": {"shouldShareToFeed": True}},
     }}
     r = client.post(BUFFER_API, headers=buffer_headers(),
                     json={"query": CREATE_POST, "variables": variables}, timeout=180)
