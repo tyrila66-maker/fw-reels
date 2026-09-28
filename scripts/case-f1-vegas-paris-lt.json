@@ -1,0 +1,14 @@
+{
+  "topic": "Case — F1 Las Vegas flight from Paris dropped (LT, voiced)",
+  "language": "lithuanian",
+  "lines": [
+    {"index":0,"section":"hook","text":"Skrydis iš Paryžiaus į Las Vegaso Formulės pirmos Grand Prix — šeši šimtai keturiasdešimt vienas euras. Pažiūrėk.","visualPrompt":"real Flight Price Watch tracker page — Paris to Las Vegas F1 price","sourceClip":"tracker-f1-vegas.mp4","clipStartSec":0.6},
+    {"index":1,"section":"problem","text":"Dar neseniai tas pats bilietas kainavo daugiau nei tūkstantį eurų.","visualPrompt":"las vegas grand prix f1 night race neon strip, dramatic"},
+    {"index":2,"section":"scene","text":"Bilietai į lapkričio lenktynes brango savaitėmis, ir dauguma tiesiog numojo ranka.","visualPrompt":"formula 1 car speeding at night, motion blur, excitement"},
+    {"index":3,"section":"solution","text":"Bet Flight Price Watch stebi kainą visą parą ir pagavo kritimą.","visualPrompt":"real Flight Price Watch tracker page — Paris to Las Vegas F1 price","sourceClip":"tracker-f1-vegas.mp4","clipStartSec":3.5},
+    {"index":4,"section":"scene","text":"Beveik keturiasdešimt procentų pigiau už tą patį skrydį į tą patį renginį.","visualPrompt":"green falling price chart, best deal moment"},
+    {"index":5,"section":"scene","text":"Toks kainos kritimas prieš didelį renginį laikosi neilgai.","visualPrompt":"las vegas sphere and strip at night, crowd energy"},
+    {"index":6,"section":"scene","text":"Pirkti spėjant — beveik visada permokėti už tą pačią vietą.","visualPrompt":"person hesitating with phone booking flight, uncertain"},
+    {"index":7,"section":"cta","text":"Sek kainas nemokamai ir pagauk momentą. Nuoroda aprašyme.","visualPrompt":"traveler with suitcase at airport heading to vegas, golden hour"}
+  ]
+}
