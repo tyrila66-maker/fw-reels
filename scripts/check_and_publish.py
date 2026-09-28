@@ -137,6 +137,27 @@ def publish_reel(client: httpx.Client, channel_id: str, video_url: str, caption:
     return result["post"]["id"]
 
 
+def publish_carousel(client: httpx.Client, channel_id: str, image_urls: list, caption: str) -> str:
+    """Multiple image assets -> Instagram carousel."""
+    variables = {"input": {
+        "channelId": channel_id,
+        "schedulingType": "automatic",
+        "mode": "shareNow",
+        "text": caption,
+        "assets": [{"image": {"url": u}} for u in image_urls],
+        "metadata": {"instagram": {}},
+    }}
+    r = client.post(BUFFER_API, headers=buffer_headers(),
+                    json={"query": CREATE_POST, "variables": variables}, timeout=180)
+    body = r.json()
+    if "errors" in body:
+        raise RuntimeError(f"Buffer GraphQL: {body['errors'][:1]}")
+    result = body["data"]["createPost"]
+    if result["__typename"] != "PostActionSuccess":
+        raise RuntimeError(f"Buffer: {result['__typename']} — {result.get('message')}")
+    return result["post"]["id"]
+
+
 def main():
     with httpx.Client(timeout=60) as client:
         decisions = latest_decisions(client)
@@ -155,9 +176,11 @@ def main():
 
         for reel_id in approved:
             videos = glob.glob(f"{reel_id}/*-post.mp4")
+            slides = sorted(glob.glob(os.path.join(reel_id, "slide-*.png")))
             caption_path = os.path.join(reel_id, "caption.txt")
             meta_path = os.path.join(reel_id, "meta.json")
-            if not videos or not os.path.exists(caption_path):
+            is_carousel = bool(slides) and not videos
+            if (not videos and not slides) or not os.path.exists(caption_path):
                 print(f"skip {reel_id}: files not found")
                 continue
 
@@ -171,8 +194,12 @@ def main():
                 continue
 
             caption = open(caption_path, encoding="utf-8").read().strip()
-            video = videos[0].replace(os.sep, "/")
-            video_url = f"https://raw.githubusercontent.com/{REPO}/main/{video}"
+            if is_carousel:
+                assets = [f"https://raw.githubusercontent.com/{REPO}/main/{s.replace(os.sep, '/')}" for s in slides]
+                first_url, channel = assets[0], "instagram"   # carousels are IG-only
+            else:
+                video = videos[0].replace(os.sep, "/")
+                first_url = f"https://raw.githubusercontent.com/{REPO}/main/{video}"
 
             if channels is None:
                 channels = resolve_channels(client)
@@ -182,15 +209,18 @@ def main():
                 print(f"skip {reel_id}: no {channel} channel")
                 continue
 
-            print(f"publishing {reel_id} -> [{channel}] {video_url}")
-            if not wait_for_raw(client, video_url):
+            kind = f"carousel×{len(slides)}" if is_carousel else "reel"
+            print(f"publishing {reel_id} -> [{channel}] {kind} {first_url}")
+            if not wait_for_raw(client, first_url):
                 print(f"hold {reel_id}: raw URL not yet served by CDN, retry next run")
                 continue
 
             post_id, last_err = None, None
             for attempt in range(3):
                 try:
-                    post_id = publish_reel(client, channel_id, video_url, caption, channel)
+                    post_id = (publish_carousel(client, channel_id, assets, caption)
+                               if is_carousel else
+                               publish_reel(client, channel_id, first_url, caption, channel))
                     break
                 except Exception as e:
                     last_err = e
