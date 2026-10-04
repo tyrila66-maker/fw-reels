@@ -180,6 +180,30 @@
       "script_file": "ski-season-2627-en.json",
       "caption_file": "ski-season-2627-en.caption.txt",
       "note": "глава «Лыжный сезон 2026/27» EN — бронируй зиму сейчас; без трекера (нет живого зимнего маршрута в приложении)"
+    },
+    {
+      "id": "alerts-feature-en",
+      "post_date": "2026-10-04",
+      "slot": "now",
+      "lang": "en",
+      "channel": "instagram",
+      "silent": false,
+      "status": "rendered",
+      "script_file": "alerts-feature-en.json",
+      "caption_file": "alerts-feature-en.caption.txt",
+      "note": "инфо-рилс: Telegram-алерты на сохранённые маршруты (голос)"
+    },
+    {
+      "id": "alerts-feature-tiktok-en",
+      "post_date": "2026-10-04",
+      "slot": "now",
+      "lang": "en",
+      "channel": "tiktok",
+      "silent": true,
+      "status": "rendered",
+      "script_file": "alerts-feature-tiktok-en.json",
+      "caption_file": "alerts-feature-tiktok-en.caption.txt",
+      "note": "инфо-TikTok: Telegram-алерты (тихий)"
     }
   ]
 }

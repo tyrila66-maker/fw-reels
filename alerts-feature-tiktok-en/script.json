@@ -1,0 +1,12 @@
+{
+  "topic": "Feature — Telegram price-drop alerts (EN, TikTok, silent)",
+  "language": "english",
+  "lines": [
+    {"index":0,"section":"hook","text":"POV: your phone just told you the flight got 60 euros cheaper.","durationSec":3.0,"visualPrompt":"telegram price drop alert notification on phone","sourceClip":"tg-alert.mp4","clipStartSec":0.4},
+    {"index":1,"section":"scene","text":"You didn't check. You didn't refresh.","durationSec":2.3,"visualPrompt":"relaxed person on couch with phone, calm"},
+    {"index":2,"section":"solution","text":"You saved the route once. Flight Price Watch watches the price 24/7.","durationSec":3.4,"visualPrompt":"real Flight Price Watch tracker page with live price chart","sourceClip":"tracker-rimini.mp4","clipStartSec":0.6},
+    {"index":3,"section":"scene","text":"The second it drops, you get a Telegram ping.","durationSec":2.8,"visualPrompt":"telegram price drop alert notification on phone","sourceClip":"tg-alert.mp4","clipStartSec":0.4},
+    {"index":4,"section":"scene","text":"New price. Link to book. Done.","durationSec":2.3,"visualPrompt":"happy person booking flight on phone, excited"},
+    {"index":5,"section":"cta","text":"Save a route, turn on alerts. Free. Link in bio.","durationSec":3.0,"visualPrompt":"traveler walking through airport at golden hour, cheerful"}
+  ]
+}

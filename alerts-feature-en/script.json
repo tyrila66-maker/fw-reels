@@ -1,0 +1,13 @@
+{
+  "topic": "Feature — Telegram price-drop alerts on saved routes (EN, voiced)",
+  "language": "english",
+  "lines": [
+    {"index":0,"section":"hook","text":"What if your phone told you the exact moment your flight got cheaper?","visualPrompt":"person looking at phone notification, surprised and happy, cozy room"},
+    {"index":1,"section":"scene","text":"Like this. The route you saved just dropped sixty euros.","visualPrompt":"telegram price drop alert notification on phone","sourceClip":"tg-alert.mp4","clipStartSec":0.4},
+    {"index":2,"section":"solution","text":"Flight Price Watch tracks your route around the clock — every few hours, day and night.","visualPrompt":"real Flight Price Watch tracker page with live price chart","sourceClip":"tracker-rimini.mp4","clipStartSec":0.6},
+    {"index":3,"section":"scene","text":"You just find a route, tap the heart to save it, and connect Telegram once.","visualPrompt":"hand tapping save heart on a travel app, clean UI"},
+    {"index":4,"section":"scene","text":"The second the price drops, you get an instant ping — the new price and a link to book.","visualPrompt":"telegram price drop alert notification on phone","sourceClip":"tg-alert.mp4","clipStartSec":0.4},
+    {"index":5,"section":"scene","text":"So you catch the low, instead of hearing about it after it is gone.","visualPrompt":"happy traveler with backpack at sunny airport, golden hour"},
+    {"index":6,"section":"cta","text":"It is free for your first two routes. Save a route and turn on alerts — link in bio.","visualPrompt":"traveler walking through airport confidently, cheerful"}
+  ]
+}
